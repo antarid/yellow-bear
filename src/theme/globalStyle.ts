@@ -4,6 +4,7 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
       primary: string;
+      accent: string;
       dark: string;
       light: string;
       grey: string;
@@ -35,6 +36,7 @@ export default createGlobalStyle`
 export const theme: DefaultTheme = {
   colors: {
     primary: '#7ED321',
+    accent: '#E990F9',
     dark: '#000',
     light: '#fff',
     grey: '#EAEAEA',

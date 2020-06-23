@@ -11,20 +11,24 @@ import { AuthContextWrapper } from './contexts/Auth';
 
 const App: React.FC = () => {
   return (
-    <AuthContextWrapper>
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Header></Header>
-          <Switch>
-            <Route component={Jogs} exact path={jogsRouteName}></Route>
-            <Route component={Info} exact path={infoRouteName}></Route>
-            <Route component={NotFound}></Route>
-          </Switch>
-        </Router>
-        <GlobalStyle></GlobalStyle>
-      </ThemeProvider>
-    </AuthContextWrapper>
+    <AppWrapper>
+      <Router>
+        <Header></Header>
+        <Switch>
+          <Route component={Jogs} exact path={jogsRouteName}></Route>
+          <Route component={Info} exact path={infoRouteName}></Route>
+          <Route component={NotFound}></Route>
+        </Switch>
+      </Router>
+      <GlobalStyle></GlobalStyle>
+    </AppWrapper>
   );
 };
+
+export const AppWrapper: React.FC = ({ children }) => (
+  <AuthContextWrapper>
+    <ThemeProvider theme={theme}>{children}</ThemeProvider>
+  </AuthContextWrapper>
+);
 
 export default App;

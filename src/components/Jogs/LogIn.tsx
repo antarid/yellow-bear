@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import logInImage from '../../assets/img/bear-face.svg';
-import { Button } from '../common';
+import { Button, FullScreenCenter } from '../common';
 import AuthContext from '../../contexts/Auth';
 import { tryAuth } from '../../api';
 
@@ -14,24 +14,16 @@ const LogIn: React.FC = () => {
   };
 
   return (
-    <OuterContainer>
+    <FullScreenCenter>
       <Container>
         <Image></Image>
         <Button onClick={logIn}>Let me in</Button>
       </Container>
-    </OuterContainer>
+    </FullScreenCenter>
   );
 };
 
 export default LogIn;
-
-const OuterContainer = styled.div`
-  height: calc(100vh - 116px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 34pt;
-`;
 
 const Container = styled.div`
   width: 503px;

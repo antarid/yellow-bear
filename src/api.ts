@@ -5,3 +5,10 @@ export const tryAuth = () =>
     method: 'POST',
     body: JSON.stringify({ uuid: 'hello' }),
   });
+
+export const fetchJogs = () =>
+  fetch(`${baseUrl}/data/sync`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  });

@@ -12,3 +12,12 @@ export const Button = styled.button`
   cursor: pointer;
   outline: none;
 `;
+
+export const FullScreenCenter = styled.div`
+  height: calc(100vh - 116px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 34pt;
+`;

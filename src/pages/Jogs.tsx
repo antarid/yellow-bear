@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import LogIn from '../components/Jogs/LogIn';
-import JogsList from '../components/Jogs/JogsList';
+import Jogs from '../components/Jogs/index';
 import AuthContext from '../contexts/Auth';
 
-const Jogs: React.FC = () => {
+const JogsPage: React.FC = () => {
   const { token } = useContext(AuthContext);
-  return !!token ? <JogsList></JogsList> : <LogIn></LogIn>;
+  return !!token ? <Jogs></Jogs> : <LogIn></LogIn>;
 };
 
-export default Jogs;
+export default JogsPage;
 
 export const routeName = '/';
