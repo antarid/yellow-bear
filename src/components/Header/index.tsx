@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Logo from './Logo';
 import Menu from './Menu';
+import AuthContext from '../../contexts/Auth';
 
 const Header: React.FC = () => {
+  const { token } = useContext(AuthContext);
   return (
     <Container>
       <Logo></Logo>
-      <Menu></Menu>
+      {!!token && <Menu></Menu>}
     </Container>
   );
 };
