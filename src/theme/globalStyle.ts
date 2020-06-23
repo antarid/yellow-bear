@@ -8,6 +8,9 @@ declare module 'styled-components' {
       light: string;
       grey: string;
     };
+    breakpoints: {
+      mobile: string;
+    };
   }
 }
 
@@ -18,6 +21,15 @@ export default createGlobalStyle`
     font-family: sans-serif;
     font-size: 14px;
   }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    color: inherit; 
+    text-decoration: inherit; 
+  }
 `;
 
 export const theme: DefaultTheme = {
@@ -26,5 +38,8 @@ export const theme: DefaultTheme = {
     dark: '#000',
     light: '#fff',
     grey: '#EAEAEA',
+  },
+  breakpoints: {
+    mobile: '700px',
   },
 };

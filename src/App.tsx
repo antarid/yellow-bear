@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import Header from './components/Header';
+import Header from './components/Header/index';
 import Jogs, { routeName as jogsRouteName } from './pages/Jogs';
 import Info, { routeName as infoRouteName } from './pages/Info';
 import NotFound from './pages/NotFound';
