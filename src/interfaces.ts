@@ -5,3 +5,9 @@ export interface Jog {
   time: number;
   user_id: string;
 }
+
+export interface JogInput {
+  distance: number;
+  time: number;
+  date: number;
+}

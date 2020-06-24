@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, act, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Jog } from '../../../interfaces';
 import Jogs from '../index';
 import { AppWrapper } from '../../../App';
@@ -55,5 +56,24 @@ describe('Jogs', () => {
     expect(spy).toBeCalledTimes(1);
     expect(screen.getByText(/Nothing is there/i)).toBeInTheDocument();
     expect(screen.queryByRole('listitem')).not.toBeInTheDocument();
+  });
+
+  it('should open and close popup', async () => {
+    const result = mockFetchJogs([
+      { id: 1126, user_id: '3', distance: 11, time: 1, date: 1572350040 },
+    ]);
+    renderWithWrappers(<Jogs />);
+    await act(async () => {
+      await result;
+    });
+    expect(screen.queryByTestId('popup')).not.toBeInTheDocument();
+
+    userEvent.click(screen.getByTestId('open-popup-button'));
+    expect(screen.getByTestId('popup')).toBeInTheDocument();
+    expect(screen.queryByTestId('open-popup-button')).not.toBeInTheDocument();
+
+    userEvent.click(screen.getByText('+')); // close popup button
+    expect(screen.getByTestId('open-popup-button')).toBeInTheDocument();
+    expect(screen.queryByTestId('popup')).not.toBeInTheDocument();
   });
 });

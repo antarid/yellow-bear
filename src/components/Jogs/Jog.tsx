@@ -4,17 +4,20 @@ import { Jog as IJog } from '../../interfaces';
 import { formatDate } from '../../utils';
 import jogImage from '../../assets/img/jog.svg';
 
-const Jog: React.FC<IJog> = ({ date, distance, time }) => (
-  <Container>
-    <Image></Image>
-    <DetailsContainer>
-      <Date>{formatDate(date * 1000)}</Date>
-      {/* <DescriptionValueContainer key="Speed" value={`${speed}`}></DescriptionValueContainer> */}
-      <DescriptionValue description="Distance" value={`${distance} km`}></DescriptionValue>
-      <DescriptionValue description="Time" value={`${time} min`}></DescriptionValue>
-    </DetailsContainer>
-  </Container>
-);
+const Jog: React.FC<IJog> = ({ date, distance, time }) => {
+  const formattedDate = formatDate(date * 1000);
+  return (
+    <Container data-testid={`${formattedDate}-${distance}-${time}`}>
+      <Image></Image>
+      <DetailsContainer>
+        <Date>{formattedDate}</Date>
+        {/* <DescriptionValueContainer key="Speed" value={`${speed}`}></DescriptionValueContainer> */}
+        <DescriptionValue description="Distance" value={`${distance} km`}></DescriptionValue>
+        <DescriptionValue description="Time" value={`${time} min`}></DescriptionValue>
+      </DetailsContainer>
+    </Container>
+  );
+};
 
 const DescriptionValue: React.FC<{ description: string; value: string }> = ({
   description,
