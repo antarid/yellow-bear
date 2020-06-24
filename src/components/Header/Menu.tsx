@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { routeName as jogsRouteName } from '../../pages/Jogs';
 import { routeName as infoRouteName } from '../../pages/Info';
 import Hamburger from './Hamburger';
+import FilterToggle from './FilterToggle';
 import menuLogo from '../../assets/img/logo-dark.svg';
 
 const menuItems: { title: string; link: string }[] = [
@@ -12,13 +13,19 @@ const menuItems: { title: string; link: string }[] = [
   { title: 'Contact us', link: '/contact-us' },
 ];
 
-const Menu: React.FC = () => {
+const Menu: React.FC<{
+  showFilter: boolean;
+  toggleFilter: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+}> = ({ showFilter, toggleFilter }) => {
   const [isOpened, setIsOpened] = useState(false);
   const toggleMenu = () => setIsOpened((isOpened) => !isOpened);
   const closeMenu = () => setIsOpened(false);
   return (
     <>
-      <Hamburger isOpened={isOpened} toggle={toggleMenu} />
+      <FilterAndHamburger>
+        <FilterToggle mobile showFilter={showFilter} toggleFilter={toggleFilter}></FilterToggle>
+        <Hamburger isOpened={isOpened} toggle={toggleMenu} />
+      </FilterAndHamburger>
       <Container isOpened={isOpened}>
         <MenuLogo onClick={closeMenu}>
           <Link to={jogsRouteName}></Link>
@@ -30,6 +37,7 @@ const Menu: React.FC = () => {
             </NavLink>
           </MenuItemContainer>
         ))}
+        <FilterToggle showFilter={showFilter} toggleFilter={toggleFilter}></FilterToggle>
       </Container>
     </>
   );
@@ -39,6 +47,7 @@ export default Menu;
 
 const Container = styled.ul<{ isOpened: boolean }>`
   display: flex;
+  align-items: center;
   @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
     position: fixed;
     background-color: ${(props) => props.theme.colors.light};
@@ -53,6 +62,11 @@ const Container = styled.ul<{ isOpened: boolean }>`
     transition: all 0.3s ease;
     transform: translateX(${(props) => (props.isOpened ? 0 : 100)}%);
   }
+`;
+
+const FilterAndHamburger = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const MenuItemContainer = styled.li`

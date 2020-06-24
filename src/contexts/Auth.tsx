@@ -16,5 +16,6 @@ export const AuthContextWrapper: React.FC = ({ children }) => {
     setToken(token);
     localStorage.setItem('token', token);
   };
+
   return <AuthContext.Provider value={{ token, authenticate }}>{children}</AuthContext.Provider>;
 };

@@ -8,6 +8,7 @@ import Info, { routeName as infoRouteName } from './pages/Info';
 import NotFound from './pages/NotFound';
 import GlobalStyle, { theme } from './theme/globalStyle';
 import { AuthContextWrapper } from './contexts/Auth';
+import { FilterContextWrapper } from './contexts/Filter';
 
 const App: React.FC = () => {
   return (
@@ -27,7 +28,9 @@ const App: React.FC = () => {
 
 export const AppWrapper: React.FC = ({ children }) => (
   <AuthContextWrapper>
-    <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    <FilterContextWrapper>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </FilterContextWrapper>
   </AuthContextWrapper>
 );
 

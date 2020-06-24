@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useContext } from 'react';
 import { fetchJogs, addJog } from '../../api';
 import { Jog, JogInput } from '../../interfaces';
+import FilterContext from '../../contexts/Filter';
 import JogsList from './JogsList';
 import NoJogs from './NoJogs';
 import OpenPopupButton from './OpenPopupButton';
 import Popup from './Popup';
 
 const Jogs: React.FC = () => {
+  const { dateFrom, dateTo } = useContext(FilterContext);
   const [jogs, setJogs] = useState<Jog[]>([]);
   const [isPopupOpened, setIsPopupOpened] = useState(false);
 
@@ -17,6 +19,14 @@ const Jogs: React.FC = () => {
   const closePopup = useCallback(() => {
     setIsPopupOpened(false);
   }, []);
+
+  const filteredJogs = useMemo(
+    () =>
+      jogs
+        .filter((jog) => (dateFrom ? jog.date > dateFrom.getTime() / 1000 : true))
+        .filter((jog) => (dateTo ? jog.date < dateTo.getTime() / 1000 : true)),
+    [dateFrom, dateTo, jogs]
+  );
 
   const handleAddJog = useCallback(
     (jog: JogInput) => {
@@ -43,7 +53,7 @@ const Jogs: React.FC = () => {
     <>
       {jogs.length ? (
         <>
-          <JogsList jogs={jogs}></JogsList>
+          <JogsList jogs={filteredJogs}></JogsList>
           {!isPopupOpened && (
             <OpenPopupButton data-testid="open-popup-button" onClick={openPopup}></OpenPopupButton>
           )}
