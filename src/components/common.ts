@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import sadFaceImage from '../assets/img/sad-rounded-square-emoticon.svg';
 
 export const Button = styled.button`
   border-radius: 36px;
@@ -13,6 +14,11 @@ export const Button = styled.button`
   outline: none;
 `;
 
+export const AccentButton = styled(Button)`
+  color: ${(props) => props.theme.colors.accent};
+  border-color: ${(props) => props.theme.colors.accent};
+`;
+
 export const FullScreenCenter = styled.div`
   height: calc(100vh - 116px);
   display: flex;
@@ -20,4 +26,11 @@ export const FullScreenCenter = styled.div`
   align-items: center;
   justify-content: center;
   padding: 0 34pt;
+`;
+
+export const SadFace = styled.div`
+  background-image: url(${sadFaceImage});
+  width: 151px;
+  height: 150px;
+  background-size: cover;
 `;
