@@ -18,6 +18,7 @@ declare module 'styled-components' {
 export default createGlobalStyle`
   body {
     padding: 0;
+    padding-top: 150px;
     margin: 0;
     font-family: sans-serif;
     font-size: 14px;

@@ -20,7 +20,7 @@ export const AccentButton = styled(Button)`
 `;
 
 export const FullScreenCenter = styled.div`
-  height: calc(100vh - 116px);
+  height: calc(100vh - 150px);
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -12,17 +12,24 @@ const Header: React.FC = () => {
     setShowFilter((showFilter) => !showFilter);
   }, []);
   return (
-    <>
+    <FixedContainer>
       <Container>
         <Logo></Logo>
         {!!token && <Menu toggleFilter={toggleFilter} showFilter={showFilter}></Menu>}
       </Container>
       {!!token && showFilter && <Filter></Filter>}
-    </>
+    </FixedContainer>
   );
 };
 
 export default Header;
+
+const FixedContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+`;
 
 const Container = styled.div`
   padding: 30px 37px;
